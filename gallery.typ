@@ -4,27 +4,28 @@
 // Pinned, so the links keep pointing at the files these figures were redrawn from.
 #let upstream-file(name) = upstream + "/blob/3b873c32dc19938136c8215909d165a25622d0d7/src/" + name
 
+// based-on: none, or (url:, author:, license:) for figures derived from a Stack Exchange answer.
 #let figures = (
-  ("sampling-plan", "Sampling-plan flowchart", "sampling-plan-2.pgf",
-    [Relative placement from anchors; diamond decisions built from a text box's anchors; elbow branches with labels; two arrows meeting one box.]),
-  ("reliability-blocks", "Series-parallel blocks", "circuitos_mistos1.pgf",
-    [A data-driven loop; forks and joins with perpendicular coordinates; wires drawn behind the boxes with `on-layer`.]),
-  ("system-io", "System with inputs and output", "reg_sistema.pgf",
-    [Curved connectors ending at border anchors given as angles; a circle joined to a box; rotated captions.]),
-  ("overlapping-groups", "Overlapping groups", "data-science-workflow.pgf",
-    [Translucent frames around groups of nodes with `rect-around`; a cycle of bent arrows; placement by polar offsets.]),
-  ("probability-tree", "Probability tree", "probtree_scheme.pgf",
-    [`cetz.tree` growing to the right; custom node and edge callbacks; labels along the edges.]),
-  ("polar-cycle", "Cycle on a triangle", "knowledge-cycle.pgf",
-    [Polar coordinates; arrowheads in the middle of each edge; text rotated along edges; a Bézier curve with polar control points.]),
-  ("density-tail", "Density with a shaded tail", "dist_t_quantil.pgf",
-    [A plot in data units via `scale`; a sampled curve; a filled tail; tick loops; a curved callout.]),
-  ("factorial-cube", "Factorial-design cube", "cubos-fatoriais-2a3.pgf",
-    [An oblique 3D view from the canvas's `z` vector; a loop over vertices; framed circle markers joined by arrows.]),
-  ("interval-braces", "Interval with braces", "confidence-interval-mean-components.pgf",
-    [`flat-brace` with labels; interval end marks; colored parts of math labels.]),
-  ("file-tree", "Directory tree", "file_tree.pgf",
-    [A tree drawn from a flat data list; elbow connectors from each parent's south to each child's west.]),
+  (name: "sampling-plan", title: "Sampling-plan flowchart", original: "sampling-plan-2.pgf", based-on: none,
+    techniques: [Relative placement from anchors; diamond decisions built from a text box's anchors; elbow branches with labels; two arrows meeting one box.]),
+  (name: "reliability-blocks", title: "Series-parallel blocks", original: "circuitos_mistos1.pgf", based-on: none,
+    techniques: [A data-driven loop; forks and joins with perpendicular coordinates; wires drawn behind the boxes with `on-layer`.]),
+  (name: "system-io", title: "System with inputs and output", original: "reg_sistema.pgf", based-on: none,
+    techniques: [Curved connectors ending at border anchors given as angles; a circle joined to a box; rotated captions.]),
+  (name: "overlapping-groups", title: "Overlapping groups", original: "data-science-workflow.pgf", based-on: none,
+    techniques: [Translucent frames around groups of nodes with `rect-around`; a cycle of bent arrows; placement by polar offsets.]),
+  (name: "probability-tree", title: "Probability tree", original: "probtree_scheme.pgf", based-on: none,
+    techniques: [`cetz.tree` growing to the right; custom node and edge callbacks; labels along the edges.]),
+  (name: "polar-cycle", title: "Cycle on a triangle", original: "knowledge-cycle.pgf", based-on: none,
+    techniques: [Polar coordinates; arrowheads in the middle of each edge; text rotated along edges; a Bézier curve with polar control points.]),
+  (name: "density-tail", title: "Density with a shaded tail", original: "dist_t_quantil.pgf", based-on: none,
+    techniques: [A plot in data units via `scale`; a sampled curve; a filled tail; tick loops; a curved callout.]),
+  (name: "factorial-cube", title: "Factorial-design cube", original: "cubos-fatoriais-2a3.pgf", based-on: none,
+    techniques: [An oblique 3D view from the canvas's `z` vector; a loop over vertices; framed circle markers joined by arrows.]),
+  (name: "interval-braces", title: "Interval with braces", original: "confidence-interval-mean-components.pgf", based-on: none,
+    techniques: [`flat-brace` with labels; interval end marks; colored parts of math labels.]),
+  (name: "file-tree", title: "Directory tree", original: "file_tree.pgf", based-on: none,
+    techniques: [A tree drawn from a flat data list; elbow connectors from each parent's south to each child's west.]),
 )
 
 #set document(title: "CeTZ Gallery")
@@ -55,10 +56,12 @@ The redrawings translate the labels from Portuguese to English, use Typst's buil
 
 #outline(title: [Figures], depth: 1)
 
-#for (name, title, original, techniques) in figures {
+#for (name, title, original, based-on, techniques) in figures {
   pagebreak(weak: true)
   [#heading(title) #label(name)]
-  [Redrawn from #link(upstream-file(original), raw(original)) in Walmes M. Zeviani's _Tikz Gallery_. #techniques]
+  [Redrawn from #link(upstream-file(original), raw(original)) #link(upstream-file(original.replace(".pgf", ".png")))[(png)] in Walmes M. Zeviani's _Tikz Gallery_#if based-on != none [,
+    which is based on #link(based-on.url)[an answer by #based-on.author] on TeX Stack Exchange (#based-on.license)].
+    #techniques]
   context if target() == "html" {
     html.elem("figure", image("figures/" + name + ".svg"))
   } else {
