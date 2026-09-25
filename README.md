@@ -2,6 +2,8 @@
 
 [View as PDF](https://romeov.github.io/CeTZGallery/cetz-gallery.pdf). [View as HTML](https://romeov.github.io/CeTZGallery/).
 
+See also [Visual CeTZ](https://romeov.github.io/VisualCeTZ/), one picture per CeTZ command or parameter.
+
 Ten diagrams in idiomatic [CeTZ](https://cetz-package.github.io/) 0.5.2, the drawing package for [Typst](https://typst.app/), each chosen for a technique worth copying: relative placement, elbow and curved connectors, forks and joins, group frames, trees, braces, mid-path arrows, plots in data units, and an oblique 3D view.
 
 Every figure is a CeTZ redrawing of a TikZ figure from Walmes M. Zeviani's [_Tikz Gallery_](https://github.com/walmes/Tikz) ([site](http://leg.ufpr.br/~walmes/Tikz/)).
