@@ -1,0 +1,11 @@
+:root { --bg: #fff; --fg: #111; --muted: #555; --accent: #85144b; --link: #0074d9; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #161616; --fg: #eee; --muted: #aaa; --accent: #ff7b9c; --link: #7fdbff; } }
+body { background: var(--bg); color: var(--fg); font: 15px/1.5 "Helvetica Neue", Arial, system-ui, sans-serif;
+  max-width: 1000px; margin: 0 auto; padding: 24px 16px; }
+h1, h2 { color: var(--accent); } a { color: var(--link); }
+figure { margin: 16px 0; text-align: center; }
+figure img { max-width: 100%; background: #fff; padding: 12px; border-radius: 4px; }
+/* Code stays light in dark mode: Typst's syntax colors assume a light background. */
+pre { background: #f5f5f5; color: #111; padding: 10px 12px; border-radius: 4px; overflow-x: auto;
+  font: 12px/1.45 Menlo, "DejaVu Sans Mono", ui-monospace, monospace; }
