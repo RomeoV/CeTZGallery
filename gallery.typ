@@ -26,6 +26,30 @@
     techniques: [`flat-brace` with labels; interval end marks; colored parts of math labels.]),
   (name: "file-tree", title: "Directory tree", original: "file_tree.pgf", based-on: none,
     techniques: [A tree drawn from a flat data list; elbow connectors from each parent's south to each child's west.]),
+  (name: "venn-partition", title: "Venn partition", original: "diagrama_venn4.pgf", based-on: none,
+    techniques: [`boolean(op: "intersection")` of a closed `merge-path` and a named ellipse, in place of clipping; loops for the partition curves and labels.]),
+  (name: "floor-plan", title: "Floor plan", original: "floor-plan.pgf", based-on: none,
+    techniques: [Walls from a list of `rel:` moves; `boolean(op: "difference")` hides the grid outside the room; a door swing `arc` from an anchor; furniture as rotated groups with a scoped style.]),
+  (name: "flowchart-shapes", title: "Flowchart shapes", original: "fluxograms.pgf", based-on: (url: "https://tex.stackexchange.com/a/87956", author: "Claudio Fiandrino", license: "CC BY-SA 3.0"),
+    techniques: [Shapes as small functions that draw their outline from the label's anchors (`rect-around`, parallelogram, hexagon, diamond); rows from a data list, stacked with `"|-"` coordinates.]),
+  (name: "commit-graph", title: "Commit graph", original: "git_log.pgf", based-on: (url: "https://tex.stackexchange.com/a/262163", author: "ph0t0nix", license: "CC BY-SA 3.0"),
+    techniques: [Layout from a data list of commits, lanes and parents; `bezier` edges that leave and enter vertically; messages and branch tags placed with perpendicular and relative coordinates.]),
+  (name: "mind-map", title: "Mind map", original: "mindmapImovel.pgf", based-on: none,
+    techniques: [Children at polar positions from a loop; tapered connectors as a `merge-path` of two `bezier` curves; colors from `color.mix`; `gradient.linear` fills behind the circles.]),
+  (name: "timeline", title: "Timeline", original: "timeline_dataviz.pgf", based-on: none,
+    techniques: [A data-driven callout helper placed by an angle anchor; leaders with `"|-"` coordinates; tag tabs relative to a box corner; a year-to-position mapping function.]),
+  (name: "capillary-rise", title: "Capillary rise", original: "bouma.pgf", based-on: none,
+    techniques: [A pseudo-3D tube from elliptical arcs; arrows at elliptical polar coordinates; `cetz.angle.angle` for the contact angle; `brace` for dimensions; curved callouts.]),
+  (name: "threshold-crossing", title: "Threshold crossing", original: "anotacoes_intersecao.pgf", based-on: (url: "https://tex.stackexchange.com/a/130791", author: "Red", license: "CC BY-SA 3.0"),
+    techniques: [`intersections` finds where the signal crosses the threshold, and a `"|-"` coordinate drops it to a computed tick; standalone `mark`s on data points; a legend boxed with `rect-around`.]),
+  (name: "hatched-intervals", title: "Hatched intervals", original: "preenchimento.pgf", based-on: (url: "https://tex.stackexchange.com/a/29367", author: "Jake", license: "CC BY-SA 3.0"),
+    techniques: [Typst `tiling` hatches with spacing and thickness as parameters; data units via `scale`; one loop for each series and its legend row.]),
+  (name: "ternary-diagram", title: "Ternary diagram", original: "ternario.pgf", based-on: (url: "https://tex.stackexchange.com/a/277000", author: "Christian Feuersänger", license: "CC BY-SA 3.0"),
+    techniques: [Barycentric coordinates; each triangle filled with an exact `gradient.linear` sampled from `color.map.viridis`; one loop for the grid, ticks and labels of all three sides; a matching color bar.]),
+  (name: "regression-3d", title: "Regression densities in 3D", original: "reg_model_3d.pgf", based-on: (url: "https://tex.stackexchange.com/a/53795", author: "Jake", license: "CC BY-SA 3.0"),
+    techniques: [An `ortho` view drawn back to front; `on-xz` for the floor and `on-xy` for density curves standing on it; labels rotated to the projected edges.]),
+  (name: "bias-variance", title: "Bias and variance targets", original: "bias-variance.pgf", based-on: none,
+    techniques: [Small multiples from one parameterized panel in nested loops; seeded pseudo-random hits from a tiny inline generator; rotated row headers.]),
 )
 
 #set document(title: "CeTZ Gallery")
@@ -44,12 +68,12 @@
   align(center, text(28pt, weight: "bold", fill: maroon)[CeTZ Gallery])
 }
 
-Ten diagrams in idiomatic CeTZ 0.5.2, each chosen for a technique worth copying.
+Diagrams in idiomatic CeTZ 0.5.2, each chosen for a technique worth copying.
 
 #link(site + "cetz-gallery.pdf")[View as PDF]. #link(site)[View as HTML]. #link(repo)[View source].
 
 Every figure is a CeTZ redrawing of a TikZ figure from Walmes M. Zeviani's _Tikz Gallery_ [1].
-Each entry links its original. The originals remain his work and are not copied into this project.
+Each entry links its original.
 The redrawings translate the labels from Portuguese to English, use Typst's built-in colors, and differ in detail.
 
 [1] Walmes M. Zeviani, _Tikz Gallery_. #link(upstream), #link("http://leg.ufpr.br/~walmes/Tikz/").
