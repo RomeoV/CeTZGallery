@@ -10,9 +10,9 @@ Every figure is a CeTZ redrawing of a TikZ figure from Walmes M. Zeviani's [_Tik
 Each entry links its original, and figures that go back to a TeX Stack Exchange answer also credit that answer.
 The redrawings translate the labels from Portuguese to English, use Typst's built-in colors, and differ in detail.
 
-![The figures](assets/overview.png)
+![The figures](docs/overview.png)
 
-Each figure is a standalone file in [`figures/`](figures/). The page shows every render next to its full source.
+Each figure is a standalone file in [`figures/`](figures/), with its render in [`docs/figures/`](docs/figures/). The page shows every render next to its full source.
 
 ## Build
 
@@ -22,7 +22,7 @@ With Typst 0.15 or later:
 ./build.sh
 ```
 
-This writes `docs/cetz-gallery.pdf` and `docs/index.html`, which GitHub Pages serves. The HTML export uses Typst's experimental `html` feature.
+This writes `docs/cetz-gallery.pdf`, `docs/index.html`, a PNG per figure, and the contact sheet `docs/overview.png`, which GitHub Pages serves. The HTML export uses Typst's experimental `html` feature.
 
 ## License
 

@@ -52,6 +52,15 @@
     techniques: [Small multiples from one parameterized panel in nested loops; seeded pseudo-random hits from a tiny inline generator; rotated row headers.]),
 )
 
+// Figures are standalone documents; a page setting is not allowed inside a container, so drop it.
+#let fig(name, width: 100%, height: auto) = layout(size => {
+  let body = eval(read("figures/" + name + ".typ").replace("#set page(width: auto, height: auto, margin: 4mm)", ""), mode: "markup")
+  let (width: w, height: h) = measure(body)
+  let w-max = if type(width) == ratio { width * size.width } else { width }
+  let k = calc.min(1, w-max / w, if height == auto { 1 } else { height / h })
+  scale(k * 100%, reflow: true, body)
+})
+
 #set document(title: "CeTZ Gallery")
 #set page(paper: "a4", margin: 2cm, numbering: "1")
 #set text(font: ("Helvetica Neue", "Arial"), size: 10pt)
@@ -86,10 +95,6 @@ The redrawings translate the labels from Portuguese to English, use Typst's buil
   [Redrawn from #link(upstream-file(original), raw(original)) #link(upstream-file(original.replace(".pgf", ".png")))[(png)] in Walmes M. Zeviani's _Tikz Gallery_#if based-on != none [,
     which is based on #link(based-on.url)[an answer by #based-on.author] on TeX Stack Exchange (#based-on.license)].
     #techniques]
-  context if target() == "html" {
-    html.elem("figure", image("figures/" + name + ".svg"))
-  } else {
-    align(center, image("figures/" + name + ".svg", width: 80%))
-  }
+  context if target() == "html" { html.elem("figure", html.frame(fig(name))) } else { align(center, fig(name, width: 80%)) }
   raw(read("figures/" + name + ".typ"), lang: "typ", block: true)
 }
